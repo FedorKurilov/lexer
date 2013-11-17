@@ -10,14 +10,16 @@
  * @version 1.0
  */
 
-if(!defined('REQUIRED')) exit('Прямой доступ к файлу запрещен');
-
 class Scanner {
 
     /**
-     * @var array Массив терминалов языка (классов лексем)
+     * @var array tokens of the lexical grammar
      */
-     public $terminals = array();
+    public $tokens = array();
+    /**
+     * @var array reserved words of the lexical grammar
+     */
+    public $reserved = array();
     /**
      * @var array
      */
@@ -40,47 +42,44 @@ class Scanner {
     private $result = array();
 
     /**
-     * Запускает анализ кода.
+     * Analyzes the code
      *
-     * @param string $code Код, подлежащий анализу
+     * @param string $code code to be analyzed
      * @return void
      */
     public function analyse($code) {
 
-        // представляем код построчно в виде массива
+        // split code into separate lines
         $this->code = explode(PHP_EOL, $code);
 
-        // рассматриваем все строки кода
+        // analyze each line of code
         foreach ($this->code as $line_number => $line_code) {
             $line_length = strlen($line_code);
-            // смещение относительно начала строки
-            $offset = 0;
-            // пока смещение не достигнет конца строки
+            $offset = 0; // offset from the beginning of line
             while ($offset < $line_length) {
-                // выделяем подстроку - от позиции смещения до конца строки
+                // select substring from offset to the end of line
                 $str = substr($line_code, $offset);
-                // проверяем ее на наличие лексемы
+                // check it for presence of any token
                 if ($this->match($str)) {
-                    // если лексема найдена
                     if ($this->lex_visible === true) {
-                        // информацию о видимой лексеме сохраняем в результирующий массив
-                        $this->result[] = array( 'row' => $line_number,
-                                     'col' => $offset,
-                                     'lex_value' => $this->lex_value,
-                                     'lex_type' => $this->lex_type
-                                       );
+                        // save information about visible token
+                        $this->result[] = array(
+                            'row' => $line_number,
+                            'col' => $offset,
+                            'lex_value' => $this->lex_value,
+                            'lex_type' => $this->lex_type
+                        );
                     }
-                    // увеличиваем смещение на длину найденной лексемы
+                    // increase offset by the length of the token found
                     $offset += strlen($this->lex_value);
                 } else {
-                    // если нет соответствий ни одному из классов,
-                    // то считаем лексему ошибочной
-                    $this->result[] = array( 'row' => $line_number,
-                                 'col' => $offset,
-                                 'lex_value' => '',
-                                 'lex_type' => 'tERROR'
-                                   );
-                    // и увеличиваем смещение на 1
+                    // first symbol of the line is error lexeme
+                    $this->result[] = array(
+                        'row' => $line_number,
+                        'col' => $offset,
+                        'lex_value' => '',
+                        'lex_type' => 'ERROR'
+                    );
                     $offset += 1;
                 }
             }
@@ -90,7 +89,7 @@ class Scanner {
 
 
     /**
-     * Возвращает результат анализа.
+     * Returns analysis result
      *
      * Результат отдается в виде массива с информацией о каждой лексеме:
      *     Array
@@ -125,7 +124,7 @@ class Scanner {
         $this->lex_type = '';
 
         // пробегаем по каждому классу лексем
-        foreach ($this->terminals as $type => $property) {
+        foreach ($this->tokens as $type => $property) {
             // если в начале строки найдена лексема какого-либо класса
             if (preg_match($property['pattern'], $str, $matches)) {
                 // и если длина этой лексемы больше длины уже найденной лексемы
