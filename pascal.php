@@ -35,8 +35,8 @@ class PascalLex extends Lexer {
         'DBLDOT'      => array( 'pattern' => '/^(\.\.)/', 'visible' => true ),                        // '..'
         'ID'          => array( 'pattern' => '/^([a-zA-Z_][a-zA-Z0-9_]*)/', 'visible' => true ),      // identifier
         'NUM'         => array( 'pattern' => '/^(\d+)/', 'visible' => true ),                         // number
-        'HEXNUM'      => array( 'pattern' => '/^(\$[0-9A-F]+)/', 'visible' => true ),                 // hexadecimal number
-        'REAL'        => array( 'pattern' => '/^(\d+\.\d+([eE][+-]?\d+)?)/', 'visible' => true ),     // real number
+        'HEXNUM'      => array( 'pattern' => '/^(\$[0-9a-fA-F]+)/', 'visible' => true ),              // hexadecimal number
+        'REALNUM'     => array( 'pattern' => '/^(\d+\.\d+([eE][+-]?\d+)?)/', 'visible' => true ),     // real number
         'STRING'      => array( 'pattern' => '/^(\'(.*?)\')/', 'visible' => true ),                   // string
         'COMMENT'     => array( 'pattern' => '/^((\{|\(\*)(.*?)(\}|\*\)))/', 'visible' => false ),    // comment
         'BLANK'       => array( 'pattern' => '/^([\s\t])/', 'visible' => false ),                     // space or \t
