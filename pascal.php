@@ -39,7 +39,7 @@ class PascalLex extends Lexer {
 		'COMMENT'	=> array( 'pattern' => '/^((\{|\(\*)(.*?)(\}|\*\)))/', 'visible' => false ),	// комментарий
 		'BLANK'		=> array( 'pattern' => '/^([\s\t])/', 'visible' => false ),			// пробел или \t
 	);
- 
+
  	public $reserved = array(
  		'kwAND'			=> 'and',
 		'kwARRAY'		=> 'array',
