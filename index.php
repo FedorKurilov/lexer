@@ -30,7 +30,7 @@ if (isset($_POST['code']) && $_POST['code'] !== '') {
             <div class="main clearfix">
                 <div class="box left">
                     <form method="post" action="index.php">
-                         <textarea id="code" name="code"><?php echo (isset($_POST['code']) && $_POST['code']) ? $_POST['code'] : 'input'; ?></textarea>
+                         <textarea id="code" name="code"><?php echo (isset($_POST['code']) && $_POST['code'] !== '') ? $_POST['code'] : 'input'; ?></textarea>
                          <div class="clearfix"><input type="submit" value="Analyze" class="right"></div>
                     </form>
                 </div>
