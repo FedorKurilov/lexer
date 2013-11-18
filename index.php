@@ -16,8 +16,8 @@ if (isset($_POST['code']) && $_POST['code']) {
     <head>
         <meta charset="utf-8">
         <title>Pascal lexical analyzer</title>
-        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/codemirror.css">
+        <link rel="stylesheet" href="css/style.css">
         <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
         <script src="js/codemirror.min.js" type="text/javascript"></script>
         <script src="js/main.js" type="text/javascript"></script>
