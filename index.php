@@ -27,7 +27,7 @@ if (isset($_POST['code']) && $_POST['code']) {
             <h1>Pascal lexical analyzer</h1>
             <p>This UI allows the user to parse the source code in some programming language and obtain the information about tokens which make up the source code by using the capabilities of the lexical analyzer.</p>
             <p>The information returned by the lexer: "<code>[<span class="string">line</span>:<span class="string">column</span>] Token: <span class="string">value</span> Token class: <span class="string">class_id</span></code>".</p>
-            <div class="clearfix">
+            <div class="main clearfix">
                 <div class="box left">
                     <form method="post" action="index.php">
                          <textarea id="code" name="code"><?php echo (isset($_POST['code']) && $_POST['code']) ? $_POST['code'] : 'input'; ?></textarea>
