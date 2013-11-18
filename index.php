@@ -5,7 +5,7 @@ require 'analyzers/pascal.php';
 
 $lexer = new PascalLexer();
 
-if (isset($_POST['code']) && $_POST['code']) {
+if (isset($_POST['code']) && $_POST['code'] !== '') {
     $lexer->analyze($_POST['code']);
     $output = $lexer->get_result();
 }
