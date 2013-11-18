@@ -127,7 +127,7 @@ class Scanner {
         $this->t_type = '';
 
         // check for presence of each class of tokens
-        foreach ($this->tokens as $type => $property) {
+        foreach ($this->token_classes as $type => $property) {
             if (preg_match($property['pattern'], $str, $matches)) {
                 // define the max. length matching substring as token
                 // to avoid premature defining (e.g. '>' in '>=')
