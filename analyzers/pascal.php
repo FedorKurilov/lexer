@@ -10,7 +10,7 @@
 
 class PascalLex extends Lexer {
 
-    public $terminals = array(
+    public $token_classes = array(
         'EQ'          => array( 'pattern' => '/^(=)/', 'visible' => true ),                           // '='
         'NE'          => array( 'pattern' => '/^(\<\>)/', 'visible' => true ),                        // '<>'
         'LT'          => array( 'pattern' => '/^(\<)/', 'visible' => true ),                          // '<'
