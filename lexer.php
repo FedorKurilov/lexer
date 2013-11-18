@@ -6,8 +6,10 @@
  * Parses the source code in some programming language to obtain information
  * about tokens (atoms of language) which make up the source code.
  *
- * @author Fedor Kurilov <fegorus@gmail.com>
- * @version 1.0
+ * @author       Fedor Kurilov <fegorus@gmail.com>
+ * @copyright    2013 Fedor Kurilov <fegorus@gmail.com>
+ * @license      http://www.opensource.org/licenses/mit-license.php MIT
+ * @version      0.1
  */
 
 class Scanner {
