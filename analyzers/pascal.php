@@ -6,7 +6,6 @@
  * @author       Fedor Kurilov <fegorus@gmail.com>
  * @copyright    2013 Fedor Kurilov <fegorus@gmail.com>
  * @license      http://www.opensource.org/licenses/mit-license.php MIT
- * @version      0.1
  */
 
 class PascalLex extends Lexer {
