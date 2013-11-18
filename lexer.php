@@ -27,17 +27,17 @@ class Scanner {
      */
     private $code;
     /**
-     * @var string
+     * @var string value of found token
      */
-    private $lex_value;
+    private $t_value;
     /**
-     * @var string
+     * @var string type of found token
      */
-    private $lex_type;
+    private $t_type;
     /**
-     * @var string
+     * @var string visibility of found token
      */
-    private $lex_visible;
+    private $t_visible;
     /**
      * @var array
      */
@@ -63,24 +63,24 @@ class Scanner {
                 $str = substr($line_code, $offset);
                 // check it for presence of any token
                 if ($this->match($str)) {
-                    if ($this->lex_visible === true) {
+                    if ($this->t_visible === true) {
                         // put information about visible token into resulting array
                         $this->result[] = array(
                             'row' => $line_number,
                             'col' => $offset,
-                            'lex_value' => $this->lex_value,
-                            'lex_type' => $this->lex_type
+                            't_value' => $this->t_value,
+                            't_type' => $this->t_type
                         );
                     }
                     // increase offset by the length of the token found
-                    $offset += strlen($this->lex_value);
+                    $offset += strlen($this->t_value);
                 } else {
                     // first symbol of the line is error lexeme
                     $this->result[] = array(
                         'row' => $line_number,
                         'col' => $offset,
-                        'lex_value' => '',
-                        'lex_type' => 'ERROR'
+                        't_value' => '',
+                        't_type' => 'ERROR'
                     );
                     $offset += 1;
                 }
@@ -100,8 +100,8 @@ class Scanner {
      *            (
      *                ['row'] => "0"
      *                ['col'] => "0"
-     *                ['lex_value'] => "begin"
-     *                ['lex_type'] => "kwBEGIN"
+     *                ['t_value'] => "begin"
+     *                ['t_type'] => "kwBEGIN"
      *            )
      *     ...
      * )
@@ -123,18 +123,18 @@ class Scanner {
      */
     private function match($str) {
 
-        $this->lex_value = '';
-        $this->lex_type = '';
+        $this->t_value = '';
+        $this->t_type = '';
 
         // check for presence of each class of tokens
         foreach ($this->tokens as $type => $property) {
             if (preg_match($property['pattern'], $str, $matches)) {
                 // define the max. length matching substring as token
                 // to avoid premature defining (e.g. '>' in '>=')
-                if (strlen($matches[1]) > strlen($this->lex_value)) {
-                    $this->lex_value = $matches[1];
-                    $this->lex_type = $type;
-                    $this->lex_visible = $property['visible'];
+                if (strlen($matches[1]) > strlen($this->t_value)) {
+                    $this->t_value = $matches[1];
+                    $this->t_type = $type;
+                    $this->t_visible = $property['visible'];
                 }
             }
         }
@@ -143,15 +143,15 @@ class Scanner {
         // check whether the found token is reserved
         if (isset($this->reserved)) {
             foreach ($this->reserved as $type => $word) {
-                if (strcasecmp($this->lex_value, $word) == 0) {
-                        $this->lex_type = $type;
-                        $this->lex_visible = true;
+                if (strcasecmp($this->t_value, $word) == 0) {
+                        $this->t_type = $type;
+                        $this->t_visible = true;
                 }
             }
         }
 
         // return false if the token was not found
-        return ($this->lex_value) ? true : false;
+        return ($this->t_value) ? true : false;
 
     }
 
