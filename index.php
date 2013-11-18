@@ -6,7 +6,7 @@ require 'analyzers/pascal.php';
 $lexer = new PascalLexer();
 
 if (isset($_POST['code']) && $_POST['code']) {
-    $lexer->analyse($_POST['code']);
+    $lexer->analyze($_POST['code']);
     $output = $lexer->get_result();
 }
 
@@ -31,7 +31,7 @@ if (isset($_POST['code']) && $_POST['code']) {
                 <div class="box left">
                     <form method="post" action="index.php">
                          <textarea id="code" name="code"><?php echo (isset($_POST['code']) && $_POST['code']) ? $_POST['code'] : 'input'; ?></textarea>
-                         <div class="clearfix"><input type="submit" value="Analyse" class="right"></div>
+                         <div class="clearfix"><input type="submit" value="Analyze" class="right"></div>
                     </form>
                 </div>
                 <div class="box right" id="re">
