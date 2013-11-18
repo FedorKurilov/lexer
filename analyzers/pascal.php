@@ -21,21 +21,21 @@ class PascalLexer extends Lexer {
         'MINUS'       => array( 'pattern' => '/^(-)/', 'visible' => true ),                           // '-'
         'ASTERISK'    => array( 'pattern' => '/^(\*)/', 'visible' => true ),                          // '*'
         'SLASH'       => array( 'pattern' => '/^(\/)/', 'visible' => true ),                          // '/'
-        'SEMCOLON'    => array( 'pattern' => '/^(;)/', 'visible' => true ),                           // ';'
+        'SEMICOLON'   => array( 'pattern' => '/^(;)/', 'visible' => true ),                           // ';'
         'COLON'       => array( 'pattern' => '/^(:)/', 'visible' => true ),                           // ':'
         'ASSIGN'      => array( 'pattern' => '/^(:=)/', 'visible' => true ),                          // ':='
         'COMMA'       => array( 'pattern' => '/^(,)/', 'visible' => true ),                           // ','
-        'LPRNTHS'     => array( 'pattern' => '/^(\()/', 'visible' => true ),                          // '('
-        'RPRNTHS'     => array( 'pattern' => '/^(\))/', 'visible' => true ),                          // ')'
+        'LPAREN'      => array( 'pattern' => '/^(\()/', 'visible' => true ),                          // '('
+        'RPAREN'      => array( 'pattern' => '/^(\))/', 'visible' => true ),                          // ')'
         'LBRACKET'    => array( 'pattern' => '/^(\[)/', 'visible' => true ),                          // '['
         'RBRACKET'    => array( 'pattern' => '/^(\])/', 'visible' => true ),                          // ']'
-        'CRCMFL'      => array( 'pattern' => '/^(\^)/', 'visible' => true ),                          // '^'
+        'CIRCUMFLEX'  => array( 'pattern' => '/^(\^)/', 'visible' => true ),                          // '^'
         'DOT'         => array( 'pattern' => '/^(\.)/', 'visible' => true ),                          // '.'
-        'DBLDOT'      => array( 'pattern' => '/^(\.\.)/', 'visible' => true ),                        // '..'
+        'DOUBELDOT'   => array( 'pattern' => '/^(\.\.)/', 'visible' => true ),                        // '..'
         'ID'          => array( 'pattern' => '/^([a-zA-Z_][a-zA-Z0-9_]*)/', 'visible' => true ),      // identifier
-        'NUM'         => array( 'pattern' => '/^(\d+)/', 'visible' => true ),                         // number
-        'HEXNUM'      => array( 'pattern' => '/^(\$[0-9a-fA-F]+)/', 'visible' => true ),              // hexadecimal number
-        'REALNUM'     => array( 'pattern' => '/^(\d+\.\d+([eE][+-]?\d+)?)/', 'visible' => true ),     // real number
+        'NUMBER'      => array( 'pattern' => '/^(\d+)/', 'visible' => true ),                         // number
+        'HEXNUMBER'   => array( 'pattern' => '/^(\$[0-9a-fA-F]+)/', 'visible' => true ),              // hexadecimal number
+        'REALNUMBER'  => array( 'pattern' => '/^(\d+\.\d+([eE][+-]?\d+)?)/', 'visible' => true ),     // real number
         'STRING'      => array( 'pattern' => '/^(\'(.*?)\')/', 'visible' => true ),                   // string
         'COMMENT'     => array( 'pattern' => '/^((\{|\(\*)(.*?)(\}|\*\)))/', 'visible' => false ),    // comment
         'BLANK'       => array( 'pattern' => '/^([\s\t])/', 'visible' => false ),                     // space or \t
@@ -61,6 +61,7 @@ class PascalLexer extends Lexer {
         'kwLABEL'        => 'label',
         'kwMOD'          => 'mod',
         'kwNIL'          => 'nil',
+        'kwNEW'          => 'new',
         'kwNOT'          => 'not',
         'kwOF'           => 'of',
         'kwPACKED'       => 'packed',
