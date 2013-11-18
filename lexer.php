@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Класс лексического анализатора (сканера).
+ * Simple generator of lexical analyzers
  *
- * Проводит разбор исходного кода на некотором языке программирования с целью получения 
- * информации о наборе лексем (единиц языка), составляющих данный исходный код.
+ * Parses the source code in some programming language to obtain information
+ * about tokens (atoms of language) which make up the source code.
  *
- * @author Федор Курилов <fegorus@gmail.com>
+ * @author Fedor Kurilov <fegorus@gmail.com>
  * @version 1.0
  */
 
@@ -62,7 +62,7 @@ class Scanner {
                 // check it for presence of any token
                 if ($this->match($str)) {
                     if ($this->lex_visible === true) {
-                        // save information about visible token
+                        // put information about visible token into resulting array
                         $this->result[] = array(
                             'row' => $line_number,
                             'col' => $offset,
@@ -90,19 +90,19 @@ class Scanner {
 
     /**
      * Returns analysis result
-     *
-     * Результат отдается в виде массива с информацией о каждой лексеме:
-     *     Array
-     *     (
-     *         [0] => Array
-     *                (
-     *                    ['row'] => "0"
-     *                    ['col'] => "0"
-     *                    ['lex_value'] => "begin"
-     *                    ['lex_type'] => "kwBegin"
-     *                )
-     *         ...
-     *     )
+     * 
+     * Returns array with information about each token as:
+     * Array
+     * (
+     *     [0] => Array
+     *            (
+     *                ['row'] => "0"
+     *                ['col'] => "0"
+     *                ['lex_value'] => "begin"
+     *                ['lex_type'] => "kwBEGIN"
+     *            )
+     *     ...
+     * )
      *
      * @return array
      */
@@ -113,9 +113,10 @@ class Scanner {
     }
 
     /**
-     * Определяет наличие в начале строки лексемы какого-либо класса.
+     * Determines token presence in the beginning of the string
+     * and saves information about the token found
      *
-     * @param string $str Проверяемая строка
+     * @param string $str string to be checked
      * @return bool
      */
     private function match($str) {
@@ -123,13 +124,12 @@ class Scanner {
         $this->lex_value = '';
         $this->lex_type = '';
 
-        // пробегаем по каждому классу лексем
+        // check for presence of each class of tokens
         foreach ($this->tokens as $type => $property) {
-            // если в начале строки найдена лексема какого-либо класса
             if (preg_match($property['pattern'], $str, $matches)) {
-                // и если длина этой лексемы больше длины уже найденной лексемы
+                // define the max. length matching substring as token
+                // to avoid premature defining (e.g. '>' in '>=')
                 if (strlen($matches[1]) > strlen($this->lex_value)) {
-                    // сохраняем информацию о новой лексеме во временный массив
                     $this->lex_value = $matches[1];
                     $this->lex_type = $type;
                     $this->lex_visible = $property['visible'];
@@ -137,8 +137,8 @@ class Scanner {
             }
         }
 
-        // если задан список зарезервированных (ключевых) слов
-        // проверяем, является ли найденная лексема ключевым словом
+        // if reserved words list is specified,
+        // check whether the found token is reserved
         if (isset($this->reserved)) {
             foreach ($this->reserved as $type => $word) {
                 if (strcasecmp($this->lex_value, $word) == 0) {
@@ -148,6 +148,7 @@ class Scanner {
             }
         }
 
+        // return false if the token was not found
         return ($this->lex_value) ? true : false;
 
     }
