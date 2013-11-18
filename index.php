@@ -54,6 +54,7 @@ if (isset($output)) {
                     </div>
                 </div>
             </div>
+            <p>Copyright (c) 2013 Fedor Kurilov | <a href="https://github.com/FedorKurilov/lexer">GitHub</a></p>
         </div>
     </body>
 </html>
