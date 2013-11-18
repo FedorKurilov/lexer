@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Simple generator of lexical analyzers
+ * The simple generator of lexical analyzers
  *
  * Parses the source code in some programming language to obtain information
  * about tokens (atoms of the lexical grammar) which make up the source code.
