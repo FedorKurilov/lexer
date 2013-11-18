@@ -8,7 +8,7 @@
  * @license      http://www.opensource.org/licenses/mit-license.php MIT
  */
 
-class PascalLex extends Lexer {
+class PascalLexer extends Lexer {
 
     public $token_classes = array(
         'EQ'          => array( 'pattern' => '/^(=)/', 'visible' => true ),                           // '='
