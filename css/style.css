@@ -7,6 +7,14 @@ body {
     font: 14px "Open Sans", Arial, Tahoma, sans-serif;
 }
 
+a {
+    color: #5395E9;
+}
+
+a:active {
+    color: #4E8DDF;
+}
+
 p, h1 {
     margin-bottom: 20px;
 }
@@ -21,6 +29,21 @@ table td {
     font-size: 14px;
     line-height: 1em;
     padding-right: 20px;
+}
+
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
 }
 
 code, .CodeMirror, .result {
@@ -60,6 +83,26 @@ input[type="submit"]:hover {
     background: #4E8DDF;
 }
 
+.box {
+    box-sizing: border-box;
+    width: 50%;
+    padding-right: 20px;
+}
+
+.box:last-child {
+    padding-right: 0;
+}
+
+.result {
+    box-sizing: border-box;
+    min-height: 300px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #DDD;
+    overflow: hidden;
+}
+
 .clearfix {
     *zoom: 1;
 }
@@ -72,38 +115,4 @@ input[type="submit"]:hover {
 
 .clearfix:after {
     clear: both;
-}
-
-.box {
-    box-sizing: border-box;
-    width: 50%;
-    padding-right: 20px;
-}
-
-.box:last-child {
-    padding-right: 0;
-}
-
-.left {
-    float: left;
-}
-
-.right {
-    float: right;
-}
-
-.wrapper {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 20px;
-}
-
-.result {
-    box-sizing: border-box;
-    min-height: 300px;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #DDD;
-    overflow: hidden;
 }
