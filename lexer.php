@@ -49,7 +49,7 @@ class Lexer {
      * @param string $code code to be analyzed
      * @return void
      */
-    public function analyse($code) {
+    public function analyze($code) {
 
         // split code into separate lines
         $this->code = explode(PHP_EOL, $code);
