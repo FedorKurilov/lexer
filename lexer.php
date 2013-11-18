@@ -4,7 +4,7 @@
  * Simple generator of lexical analyzers
  *
  * Parses the source code in some programming language to obtain information
- * about tokens (atoms of language) which make up the source code.
+ * about tokens (atoms of the lexical grammar) which make up the source code.
  *
  * @author       Fedor Kurilov <fegorus@gmail.com>
  * @copyright    2013 Fedor Kurilov <fegorus@gmail.com>
