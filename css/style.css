@@ -15,7 +15,7 @@ a:active {
     color: #4E8DDF;
 }
 
-p, h1 {
+p, h1, .main {
     margin-bottom: 20px;
 }
 
