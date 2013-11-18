@@ -12,7 +12,7 @@
  * @version      0.1
  */
 
-class Scanner {
+class Lexer {
 
     /**
      * @var array tokens of the lexical grammar
