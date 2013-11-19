@@ -151,7 +151,7 @@ class Lexer {
         }
 
         // return false if the token was not found
-        return ($this->t_value) ? true : false;
+        return ($this->t_value !== '') ? true : false;
 
     }
 
