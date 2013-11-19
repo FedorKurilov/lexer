@@ -42,7 +42,7 @@ if (isset($_POST['code']) && $_POST['code'] !== '') {
 if (isset($output)) {
     foreach ($output as $line) {
         echo '                            <tr><td>[' . ($line['row'] + 1) . ':' . ($line['col'] + 1) . ']</td>';
-        echo ($line['t_value']) ? "<td>Token: <b>{$line['t_value']}</b></td>" : '<td></td>';
+        echo ($line['t_value'] !== '') ? "<td>Token: <b>{$line['t_value']}</b></td>" : '<td></td>';
         echo "<td>Token class: <em>{$line['t_type']}</em></td></tr>\n";
     }
 } else {
