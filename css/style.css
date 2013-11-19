@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 14px "Open Sans", Arial, Tahoma, sans-serif;
+}
+
+a {
+    color: #5395E9;
+}
+
+a:active {
+    color: #4E8DDF;
+}
+
+p, h1, .main {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 21px;
+    line-height: 1;
+    font-weight: normal;
+}
+
+table td {
+    font-size: 14px;
+    line-height: 1em;
+    padding-right: 20px;
+}
+
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
+}
+
+code, .CodeMirror, .result {
+    font: 14px/1.2 consolas, monospace;
+}
+
+.string {
+    color: #5395E9;
+}
+
+.CodeMirror {
+    min-height: 300px;
+    height: auto;
+    border: 1px solid #DDD;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.CodeMirror-scroll {
+    min-height: 300px;
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    outline: none;
+    border: 0;
+    background: #5395E9;
+    padding: 5px 35px;
+    color: #FFF;
+    font: 16px "Open Sans", Arial, Tahoma, sans-serif;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background: #4E8DDF;
+}
+
+.box {
+    box-sizing: border-box;
+    width: 50%;
+    padding-right: 20px;
+}
+
+.box:last-child {
+    padding-right: 0;
+}
+
+.result {
+    box-sizing: border-box;
+    min-height: 300px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #DDD;
+    overflow: hidden;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.clearfix:before, .clearfix:after {
+    display: table;
+    content: "";
+    line-height: 0;
+}
+
+.clearfix:after {
+    clear: both;
+}
