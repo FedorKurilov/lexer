@@ -9,7 +9,7 @@ The simple lexical analyzer generator
  - point
  - point
 
-## TODO
+## Todo
 
  - point
  - point
