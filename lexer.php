@@ -27,18 +27,6 @@ class Lexer {
      */
     private $code;
     /**
-     * @var string value of found token
-     */
-    private $t_value;
-    /**
-     * @var string type of found token
-     */
-    private $t_type;
-    /**
-     * @var string visibility of found token
-     */
-    private $t_visible;
-    /**
      * @var array
      */
     private $result = array();
@@ -58,28 +46,61 @@ class Lexer {
         foreach ($this->code as $line_number => $line_code) {
             $line_length = strlen($line_code);
             $offset = 0; // offset from the beginning of line
+            $prev_delimiter = false;
             while ($offset < $line_length) {
                 // select substring from offset to the end of line
                 $str = substr($line_code, $offset);
-                // check it for presence of any token
-                if ($this->match($str)) {
-                    if ($this->t_visible === true) {
-                        // put information about visible token into resulting array
-                        $this->result[] = array(
-                            'row' => $line_number,
-                            'col' => $offset,
-                            't_value' => $this->t_value,
-                            't_type' => $this->t_type
-                        );
+                $lexeme = $this->get_lexeme($str);
+                if ($lexeme['type'] !== '') {
+                    // if lexeme found
+                    // if current lexeme is delimiter
+                    if ($lexeme['delimiter'] === true) {
+                        $prev_delimiter = true;
+                        // put info about visible token-delimiter to the result
+                        if ($lexeme['invisible'] !== true) {
+                            $this->result[] = array(
+                                'row' => $line_number,
+                                'col' => $offset,
+                                't_value' => $lexeme['value'],
+                                't_type' => $lexeme['type']
+                            );
+                        }
+                    } else {
+			// get info about the next lexeme
+                        $next_str = substr($str, strlen($lexeme['value']));
+                        $next_lexeme = $this->get_lexeme($next_str);
+                        // if next lexeme is delimiter or current lexeme is the last in the line
+                        // AND prev lexeme is delimiter or current lexeme is the first in the line
+                        if(($next_lexeme['delimiter'] === true || $offset + strlen($lexeme['value']) === $line_length) && ($prev_delimiter === true || $offset === 0)) {
+                            // put info about visible token to the result
+                            if ($lexeme['invisible'] !== true) {
+                                $this->result[] = array(
+                                    'row' => $line_number,
+                                    'col' => $offset,
+                                    't_value' => $lexeme['value'],
+                                    't_type' => $lexeme['type']
+                                );
+                            }
+                        } else {
+                            // else current lexeme is not token 
+			    $prev_delimiter = false;
+                            $this->result[] = array(
+                                'row' => $line_number,
+                                'col' => $offset,
+                                't_value' => $lexeme['value'],
+                                't_type' => 'ERROR'
+                            );
+                        }
                     }
-                    // increase offset by the length of the token found
-                    $offset += strlen($this->t_value);
+                    // increase offset by the length of found delimiter
+                    $offset += strlen($lexeme['value']);
                 } else {
-                    // first symbol of the line is error lexeme
+                    // lexeme not found
+                    // put error symbol as error token to the result
                     $this->result[] = array(
                         'row' => $line_number,
                         'col' => $offset,
-                        't_value' => '',
+                        't_value' => $lexeme['value'],
                         't_type' => 'ERROR'
                     );
                     $offset += 1;
@@ -88,7 +109,6 @@ class Lexer {
         }
 
     }
-
 
     /**
      * Returns analysis result
@@ -116,42 +136,49 @@ class Lexer {
 
     /**
      * Determines token presence in the beginning of the string
-     * and saves information about the token found
+     * and returns information about the token found
      *
      * @param string $str string to be checked
-     * @return bool
+     * @return array
      */
-    private function match($str) {
+    private function get_lexeme($str) {
 
-        $this->t_value = '';
-        $this->t_type = '';
+        $result = array(
+            'value' => '',
+            'type' => '',
+            'invisible' => false,
+            'delimiter' => false
+        );
 
         // check for presence of each class of tokens
         foreach ($this->token_classes as $type => $property) {
             if (preg_match($property['pattern'], $str, $matches)) {
                 // define the max. length matching substring as token
                 // to avoid premature defining (e.g. '>' in '>=')
-                if (strlen($matches[1]) > strlen($this->t_value)) {
-                    $this->t_value = $matches[1];
-                    $this->t_type = $type;
-                    $this->t_visible = $property['visible'];
+                if (strlen($matches[1]) > strlen($result['value'])) {
+                    $result['value'] = $matches[1];
+                    $result['type'] = $type;
+                    $result['invisible'] = $property['invisible'];
+                    $result['delimiter'] = $property['delimiter'];
+                }
+            }
+        }
+	// if nothing found, put the first symbol of $str to the value
+        if ($result['value'] === '') {
+            $result['value'] = $str[0];
+        } else {
+            // else if reserved words list is specified,
+            // check whether the found token is reserved
+            if (isset($this->reserved)) {
+                foreach ($this->reserved as $type => $word) {
+                    if (strcasecmp($result['value'], $word) == 0) {
+                            $result['type'] = $type;
+                    }
                 }
             }
         }
 
-        // if reserved words list is specified,
-        // check whether the found token is reserved
-        if (isset($this->reserved)) {
-            foreach ($this->reserved as $type => $word) {
-                if (strcasecmp($this->t_value, $word) == 0) {
-                        $this->t_type = $type;
-                        $this->t_visible = true;
-                }
-            }
-        }
-
-        // return false if the token was not found
-        return ($this->t_value !== '') ? true : false;
+        return $result;
 
     }
 
