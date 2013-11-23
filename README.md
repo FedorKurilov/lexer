@@ -14,6 +14,7 @@ See an example in /analysers directory.
 ![image alt][1]
 ## Todo
  - support of multiline tokens (e.g., comments)
+ - code refactoring
 
 ## License
 See LICENSE file for details
