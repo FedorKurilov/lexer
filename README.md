@@ -1,18 +1,20 @@
 # Lexer
 
-The simple lexical analyzer generator
+Just a simple lexical analyzer generator, only for educational purposes.
+To use it, you must specify list of token classes and optional list of reserved words.
+Each token class must be described as:
+```php
+'IDENTIFIER' => array( 'pattern' => '/^([a-zA-Z])/', 'invisible' => false, 'delimiter' => false )
+```
+Where 'invisible' and 'delimiter' parameters are optional.
+
+See an example in /analysers directory.
 
 ![image alt][1]
-## Features
-
- - point
- - point
- - point
 
 ## Todo
 
- - point
- - point
+ - support of multiline tokens (e.g., comments)
 
 ## License
 
