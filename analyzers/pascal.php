@@ -11,34 +11,34 @@
 class PascalLexer extends Lexer {
 
     public $token_classes = array(
-        'EQ'          => array( 'pattern' => '/^(=)/', 'visible' => true ),                                   // '='
-        'NE'          => array( 'pattern' => '/^(\<\>)/', 'visible' => true ),                                // '<>'
-        'LT'          => array( 'pattern' => '/^(\<)/', 'visible' => true ),                                  // '<'
-        'GT'          => array( 'pattern' => '/^(\>)/', 'visible' => true ),                                  // '>'
-        'LE'          => array( 'pattern' => '/^(\<=|=\<)/', 'visible' => true ),                             // <=
-        'GE'          => array( 'pattern' => '/^(\>=|=\>)/', 'visible' => true ),                             // >=
-        'PLUS'        => array( 'pattern' => '/^(\+)/', 'visible' => true ),                                  // '+'
-        'MINUS'       => array( 'pattern' => '/^(-)/', 'visible' => true ),                                   // '-'
-        'ASTERISK'    => array( 'pattern' => '/^(\*)/', 'visible' => true ),                                  // '*'
-        'SLASH'       => array( 'pattern' => '/^(\/)/', 'visible' => true ),                                  // '/'
-        'SEMICOLON'   => array( 'pattern' => '/^(;)/', 'visible' => true ),                                   // ';'
-        'COLON'       => array( 'pattern' => '/^(:)/', 'visible' => true ),                                   // ':'
-        'ASSIGN'      => array( 'pattern' => '/^(:=)/', 'visible' => true ),                                  // ':='
-        'COMMA'       => array( 'pattern' => '/^(,)/', 'visible' => true ),                                   // ','
-        'LPAREN'      => array( 'pattern' => '/^(\()/', 'visible' => true ),                                  // '('
-        'RPAREN'      => array( 'pattern' => '/^(\))/', 'visible' => true ),                                  // ')'
-        'LBRACKET'    => array( 'pattern' => '/^(\[)/', 'visible' => true ),                                  // '['
-        'RBRACKET'    => array( 'pattern' => '/^(\])/', 'visible' => true ),                                  // ']'
-        'CIRCUMFLEX'  => array( 'pattern' => '/^(\^)/', 'visible' => true ),                                  // '^'
-        'DOT'         => array( 'pattern' => '/^(\.)/', 'visible' => true ),                                  // '.'
-        'DOUBELDOT'   => array( 'pattern' => '/^(\.\.)/', 'visible' => true ),                                // '..'
-        'ID'          => array( 'pattern' => '/^([a-zA-Z_][a-zA-Z0-9_]*)/', 'visible' => true ),              // identifier
-        'NUMBER'      => array( 'pattern' => '/^([0-9]+)/', 'visible' => true ),                              // number
-        'HEXNUMBER'   => array( 'pattern' => '/^(\$[0-9a-fA-F]+)/', 'visible' => true ),                      // hexadecimal number
-        'REALNUMBER'  => array( 'pattern' => '/^([0-9]+\.[0-9]+([eE][+-]?[0-9]+)?)/', 'visible' => true ),    // real number
-        'STRING'      => array( 'pattern' => '/^(\'(.*?)\')/', 'visible' => true ),                           // string
-        'COMMENT'     => array( 'pattern' => '/^((\{|\(\*)(.*?)(\}|\*\)))/', 'visible' => false ),            // comment
-        'BLANK'       => array( 'pattern' => '/^([\s\t])/', 'visible' => false ),                             // space or \t
+        'EQ'          => array( 'pattern' => '/^(=)/', 'delimiter' => true ),                              // '='
+        'NE'          => array( 'pattern' => '/^(\<\>)/', 'delimiter' => true ),                           // '<>'
+        'LT'          => array( 'pattern' => '/^(\<)/', 'delimiter' => true ),                             // '<'
+        'GT'          => array( 'pattern' => '/^(\>)/', 'delimiter' => true ),                             // '>'
+        'LE'          => array( 'pattern' => '/^(\<=|=\<)/', 'delimiter' => true ),                        // <=
+        'GE'          => array( 'pattern' => '/^(\>=|=\>)/', 'delimiter' => true ),                        // >=
+        'PLUS'        => array( 'pattern' => '/^(\+)/', 'delimiter' => true ),                             // '+'
+        'MINUS'       => array( 'pattern' => '/^(-)/', 'delimiter' => true ),                              // '-'
+        'ASTERISK'    => array( 'pattern' => '/^(\*)/', 'delimiter' => true ),                             // '*'
+        'SLASH'       => array( 'pattern' => '/^(\/)/', 'delimiter' => true ),                             // '/'
+        'SEMICOLON'   => array( 'pattern' => '/^(;)/', 'delimiter' => true ),                              // ';'
+        'COLON'       => array( 'pattern' => '/^(:)/', 'delimiter' => true ),                              // ':'
+        'ASSIGN'      => array( 'pattern' => '/^(:=)/', 'delimiter' => true ),                             // ':='
+        'COMMA'       => array( 'pattern' => '/^(,)/', 'delimiter' => true ),                              // ','
+        'LPAREN'      => array( 'pattern' => '/^(\()/', 'delimiter' => true ),                             // '('
+        'RPAREN'      => array( 'pattern' => '/^(\))/', 'delimiter' => true ),                             // ')'
+        'LBRACKET'    => array( 'pattern' => '/^(\[)/', 'delimiter' => true ),                             // '['
+        'RBRACKET'    => array( 'pattern' => '/^(\])/', 'delimiter' => true ),                             // ']'
+        'CIRCUMFLEX'  => array( 'pattern' => '/^(\^)/', 'delimiter' => true ),                             // '^'
+        'DOT'         => array( 'pattern' => '/^(\.)/', 'delimiter' => true ),                             // '.'
+        'DOUBELDOT'   => array( 'pattern' => '/^(\.\.)/', 'delimiter' => true ),                           // '..'
+        'ID'          => array( 'pattern' => '/^([a-zA-Z_][a-zA-Z0-9_]*)/' ),                              // identifier
+        'NUMBER'      => array( 'pattern' => '/^([0-9]+)/' ),                                              // number
+        'HEXNUMBER'   => array( 'pattern' => '/^(\$[0-9a-fA-F]+)/' ),                                      // hexadecimal number
+        'REALNUMBER'  => array( 'pattern' => '/^([0-9]+\.[0-9]+([eE][+-]?[0-9]+)?)/' ),                    // real number
+        'STRING'      => array( 'pattern' => '/^(\'(.*?)\')/' ),                                           // string
+        'COMMENT'     => array( 'pattern' => '/^((\{|\(\*)(.*?)(\}|\*\)))/', 'invisible' => true ),        // comment
+        'BLANK'       => array( 'pattern' => '/^([\s\t])/', 'invisible' => true, 'delimiter' => true ),    // space or \t
     );
 
     public $reserved = array(
