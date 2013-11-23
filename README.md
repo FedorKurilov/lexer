@@ -1,8 +1,8 @@
 # Lexer
 
-Just a simple lexical analyzer generator, only for educational purposes.
+Just a simple lexical analyzer generator, only for educational purposes. In real projects use special lexer generators like **Lex** and **Quex** (see http://catalog.compilertools.net/lexparse.html).
 
-To use it, you must specify list of token classes and optional list of reserved words.
+To use Lexer, you must specify list of token classes and optional list of reserved words.
 Each token class must be described as:
 ```php
 'IDENTIFIER' => array( 'pattern' => '/^([a-zA-Z])/', 'invisible' => false, 'delimiter' => false )
