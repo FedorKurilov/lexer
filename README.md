@@ -17,6 +17,6 @@ See an example in /analysers directory.
  - code refactoring
 
 ## License
-See LICENSE file for details
+MIT License (see LICENSE file for details)
 
 [1]: https://raw.github.com/FedorKurilov/lexer/master/la.png
